@@ -66,7 +66,7 @@
             </ul>
         </div>
         <li><a href="law.html">行业动态</a></li>
-        <li><a href="${pageContext.request.contextPath}/front/user_list.jsp" target="right">通知公告</a> </li>
+        <li><a href="${pageContext.request.contextPath}/front/notice/queryallNotice.handler" target="right">通知公告</a> </li>
         <li><a href="${pageContext.request.contextPath}/front/school_apply.jsp" target="right">驾校开通申请</a> </li>
     </ul>
 </nav>

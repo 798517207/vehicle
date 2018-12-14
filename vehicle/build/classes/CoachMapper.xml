@@ -23,4 +23,5 @@
   	COACH_PHONE from t_coach c,t_school s,t_parameter p where c.COACH_STATE != 99 and 
   	c.COACH_STATE = p.PARAMETER_ID and c.SCHOOL_ID = s.SCHOOL_ID 
   </select>
+
 </mapper>

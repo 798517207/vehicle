@@ -15,7 +15,7 @@
 <!--内容部分每个界面不同的地方-->
 <div class="left con">
     <!--所在位置-->
-    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【用户列表】</a> </div>
+    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【教练车列表】</a> </div>
     <!--内容部分-->
     <div class="perSerCon left">
         <div class="perSevchage left backBg">
@@ -27,21 +27,17 @@
             <div class="staticChange" style="display: block" >
                 <table border="0" class="staticTable">
                     <thead>
-                    <tr><td>公告ID</td>
-                    <td>公告标题</td>
-                    <td>公告内容</td>
-                    <td>公告状态</td>
-                    <td>发布时间</td>
-                    <td>操作</td>
-                    </tr>
+                    <tr><td>教练车ID</td><td>教练车车牌号</td><td>教练车状态</td><td>创建时间</td><td>驾校名字</td><td>教练名字</td></tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${map}" var="map">
-                    <tr><td>${map.noticeId}</td>
-                    <td>${map.noticeTitle}</td>
-                    <td>${map.noticeContent}</td>
-                    <td>${map.noticeState}</td>
-                    <td>${map.noticeDate}</td></tr>
+                    <tr><td>${map.carId}</td>
+                    <td>${map.carNum}</td>
+                    <td>${map.carState}</td>
+                    <td>${map.carDate}</td>
+                    <td>${map.schoolName}</td>
+                    <td>${map.coachName}</td>
+                    </tr>
                     </c:forEach>
                     </tbody>
                 </table>

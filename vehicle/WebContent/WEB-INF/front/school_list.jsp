@@ -15,11 +15,11 @@
 <!--内容部分每个界面不同的地方-->
 <div class="left con">
     <!--所在位置-->
-    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【用户列表】</a> </div>
+    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【驾校列表】</a> </div>
     <!--内容部分-->
     <div class="perSerCon left">
         <div class="perSevchage left backBg">
-            <h3 class="staticHsty">用户详情列表<h3/>
+            <h3 class="staticHsty">驾校详情列表<h3/>
             <p id="chageTab"><span class="left listSpan"><a href="javascript:void(0)" title="图表" class="listTable"></a><a href="javascript:void(0)" title="统计图" class="listStatic"></a> </span>
                 <span class="right"><label>时间：</label><input type="month" class="timeInput" /></span></p>
         </div>
@@ -27,11 +27,13 @@
             <div class="staticChange" style="display: block" >
                 <table border="0" class="staticTable">
                     <thead>
-                    <tr><td>公告ID</td>
-                    <td>公告标题</td>
-                    <td>公告内容</td>
-                    <td>公告状态</td>
-                    <td>发布时间</td>
+                    <tr><td>驾校ID</td>
+                    <td>驾校名称</td>
+                    <td>驾校状态</td>
+                    <td>创建时间</td>
+                    <td>驾校营业执照</td>
+                    <td>驾校法人执照</td>
+                    <td>驾校电话</td>
                     <td>操作</td>
                     </tr>
                     </thead>

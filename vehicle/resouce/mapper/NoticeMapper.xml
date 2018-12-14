@@ -8,4 +8,22 @@
     <result column="NOTICE_STATE" jdbcType="DECIMAL" property="noticeState" />
     <result column="NOTICE_DATE" jdbcType="TIMESTAMP" property="noticeDate" />
   </resultMap>
+   <!-- 通知公告表的增加 -->
+  <insert id="add" parameterType="com.great.bean.Notice">
+  insert into T_NOTICE (NOTICE_ID,NOTICE_TITLE,NOTICE_CONTENT) 
+  values (SEQ_T_NOTICE.NEXTVAL,#{NOTICE_TITLE},#{NOTICE_CONTENT})
+  </insert>
+  <!-- 通知公告表的修改 -->
+  <update id="update" parameterType="com.great.bean.Notice">
+  update T_NOTICE SET NOTICE_TITLE=#{noticeTitle},NOTICE_CONTENT=#{noticeContent}
+   WHERE NOTICE_ID=#{noticeId}
+  </update>
+  <!-- 假删除通知公告表信息 -->
+  <update id="delete" parameterType="com.great.bean.Notice">
+  update T_NOTICE SET NOTICE_STATE=99 WHERE NOTICE_ID=#{noticeId}
+  </update>
+  <select id="queryall"  resultMap="BaseResultMap">
+  select * FROM T_NOTICE WHERE NOTICE_STATE!=99
+  </select>
+  
 </mapper>

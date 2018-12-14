@@ -25,4 +25,7 @@
 		values
 		(seq_t_school.nextval,#{schoolAccount},#{schoolPwd},#{schoolName},#{schoolLicense},#{schoolMaster},#{schoolPhone})
 	</insert>
+	<select id="queryAll"  resultMap="BaseResultMap">
+   select * FROM T_SCHOOL WHERE SCHOOL_STATE!=99
+   </select>
 </mapper>

@@ -9,4 +9,23 @@
     <result column="SCHOOL_ID" jdbcType="DECIMAL" property="schoolId" />
     <result column="COACH_ID" jdbcType="DECIMAL" property="coachId" />
   </resultMap>
+   <!-- 教练车表的增加 -->
+  <insert id="add" parameterType="com.great.bean.Car">
+  insert into T_CAR (CAR_ID,CAR_NUM) 
+  values (SEQ_T_NOTICE.NEXTVAL,#{CAR_NUM})
+  </insert>
+  <!-- 教练车的修改 -->
+  <update id="update" parameterType="com.great.bean.Car">
+  update T_CAR SET CAR_NUM=#{carNum},SCHOOL_ID=#{schoolId},COACH_ID=#{coachId}
+   WHERE CAR_ID=#{carId}
+  </update>
+  <!-- 假删除教练车表信息 -->
+  <update id="delete" parameterType="com.great.bean.Car">
+  update T_CAR SET CAR_State=99 WHERE CAR_ID=#{carId}
+  </update>
+  <!-- 查询教练车 -->
+  <select id="queryAll"  resultMap="BaseResultMap">
+  select a.*,b.SCHOOL_NAME,c.COACH_NAME from T_CAR a,T_SCHOOL b,T_COACH c
+ WHERE a.SCHOOL_ID=b.SCHOOL_ID and a.COACH_ID=c.COACH_ID and CAR_State!=99
+  </select>
 </mapper>

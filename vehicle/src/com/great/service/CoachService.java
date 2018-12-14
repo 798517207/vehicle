@@ -16,7 +16,8 @@ public class CoachService {
 	public Coach login(Map<String,Object> map) throws Exception{
 		return coachMapper.login(map);
 	}
-	public List<Map> queryAll() throws Exception{
-		return coachMapper.queryAll();
-	}
+	//查询通知公告表，并展示数据
+	 public List<Map<String,Object>> queryAll() throws Exception{
+	   return coachMapper.queryAll();
+	    }
 }
