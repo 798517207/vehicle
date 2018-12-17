@@ -27,8 +27,8 @@ public class NoticeService {
 		 return noticeMapper.delete(noticeId)>0;
 	    }
 	//查询通知公告表，并展示数据
-	 public List<Map<String,Object>> queryall() throws Exception{
-		 return noticeMapper.queryall();
+	 public List<Map<String,Object>> queryAll() throws Exception{
+		 return noticeMapper.queryAll();
 	    }
 	//查询随便5条数据，并展示。
 	 public Map<String,Object> query ()throws Exception{

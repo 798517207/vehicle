@@ -10,4 +10,13 @@
     <result column="EVALUATE_STATE" jdbcType="DECIMAL" property="evaluateState" />
     <result column="EVALUATE_DATE" jdbcType="TIMESTAMP" property="evaluateDate" />
   </resultMap>
+  <!-- 评价表表的增加 -->
+  <insert id="add" parameterType="com.great.bean.Car">
+  insert into T_EVALUATE (EVALUATE_ID,EVALUATE_CONTENT) 
+  values (SEQ_T_NOTICE.NEXTVAL,#{EVALUATE_CONTENT})
+  </insert>
+  <!-- 评价表查询 -->
+  <select id="queryAll"  resultMap="BaseResultMap">
+  select * FROM T_EVALUATE WHERE EVALUATE_STATE!=99
+  </select>
 </mapper>

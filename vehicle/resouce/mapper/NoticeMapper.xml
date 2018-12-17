@@ -22,7 +22,7 @@
   <update id="delete" parameterType="com.great.bean.Notice">
   update T_NOTICE SET NOTICE_STATE=99 WHERE NOTICE_ID=#{noticeId}
   </update>
-  <select id="queryall"  resultMap="BaseResultMap">
+  <select id="queryAll"  resultMap="BaseResultMap">
   select * FROM T_NOTICE WHERE NOTICE_STATE!=99
   </select>
   

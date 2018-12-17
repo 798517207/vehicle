@@ -9,17 +9,17 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/base.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>管理员登录</title>
+<title>通知公告列表</title>
 </head>
 <body>	
 <!--内容部分每个界面不同的地方-->
 <div class="left con">
     <!--所在位置-->
-    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【用户列表】</a> </div>
+    <div class="perSerTab"><span>当前位置：</span><a href="javascript:void(0)">【公告列表】</a> </div>
     <!--内容部分-->
     <div class="perSerCon left">
         <div class="perSevchage left backBg">
-            <h3 class="staticHsty">用户详情列表<h3/>
+            <h3 class="staticHsty">公告详情列表<h3/>
             <p id="chageTab"><span class="left listSpan"><a href="javascript:void(0)" title="图表" class="listTable"></a><a href="javascript:void(0)" title="统计图" class="listStatic"></a> </span>
                 <span class="right"><label>时间：</label><input type="month" class="timeInput" /></span></p>
         </div>
@@ -27,7 +27,8 @@
             <div class="staticChange" style="display: block" >
                 <table border="0" class="staticTable">
                     <thead>
-                    <tr><td>公告ID</td>
+                    <tr>
+                    <td>公告ID</td>
                     <td>公告标题</td>
                     <td>公告内容</td>
                     <td>公告状态</td>
@@ -36,13 +37,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${map}" var="map">
+                     <c:forEach items="${map}" var="map">
                     <tr><td>${map.noticeId}</td>
                     <td>${map.noticeTitle}</td>
                     <td>${map.noticeContent}</td>
                     <td>${map.noticeState}</td>
-                    <td>${map.noticeDate}</td></tr>
+                    <td>${map.noticeDate}</td>
                     </c:forEach>
+                    <td>
+                    <input type="button" value="删除">
+                    <input type="button" value="修改">
+                    </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

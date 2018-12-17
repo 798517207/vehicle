@@ -1,11 +1,13 @@
 package com.great.handler.back;
 
 import java.util.List;
+
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +22,9 @@ import com.great.service.CoachService;
 import com.great.service.SchoolService;
 import com.great.util.Result;
 
-public class CarOneHandler {
+@Controller("backCarHandler")
+@RequestMapping("/back/car")
+public class CarHandler {
 	//教练车的service
 	@Resource
 	private CarService carService;
@@ -60,17 +64,16 @@ public class CarOneHandler {
 		}
 		//修改教练车
 		@RequestMapping(value = "/updateCar.handler")
-		public @ResponseBody Result update(
+		public ModelAndView  update(ModelAndView mav,
 				@RequestParam(value = "carId",required=true) int carId,
 				HttpSession session
 				) throws Exception {
 			boolean flag=false;
 			flag=carService.update(carId);
-			if(flag==true){
-				return Result.success("修改成功");
-			}else{
-			return Result.fail("修改失败");
-			}
+			List<Map<String,Object>> map = carService.queryAll();
+			mav.getModel().put("map", map);
+			mav.setViewName("/back/car_add");
+			return mav;
 			
 		}
 	//获取教练表和驾校表的数据。
@@ -87,5 +90,15 @@ public class CarOneHandler {
 		
 	}
 
+	@RequestMapping(value = "/queryCar.handler")
+	public ModelAndView queryCar(ModelAndView mav,HttpSession session) throws Exception {
+		//获取教练车表的信息
+		List<Map<String,Object>> map = carService.queryAll();
+		mav.getModel().put("map", map);
+		
+		mav.setViewName("/back/car_list");
+		return mav;
+		
+	}
 	
 }

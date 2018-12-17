@@ -13,7 +13,7 @@ public interface NoticeMapper {
     //假删除通知公告表
     public int delete(int noticeId) throws Exception;
     //查询通知公告表，并展示数据
-    public List<Map<String,Object>> queryall() throws Exception;
+    public List<Map<String,Object>> queryAll() throws Exception;
     //根据条件查询数据，并展示。
     public Map<String,Object> query ()throws Exception;
     

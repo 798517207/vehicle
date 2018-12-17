@@ -74,10 +74,11 @@ public class NoticeHandler {
 				
 			}
 	
-	@RequestMapping(value = "/queryallNotice.handler")
-	public ModelAndView queryall(ModelAndView mav,HttpSession session) throws Exception {
-		List<Map<String,Object>> map = noticeService.queryall();
+	@RequestMapping(value = "/queryAllNotice.handler")
+	public ModelAndView queryAll(ModelAndView mav,HttpSession session) throws Exception {
+		List<Map<String,Object>> map = noticeService.queryAll();
 		mav.getModel().put("map", map);
+	
 		mav.setViewName("/front/notice_list");
 		return mav;
 		
