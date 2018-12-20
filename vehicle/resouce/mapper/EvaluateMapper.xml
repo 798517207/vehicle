@@ -12,8 +12,8 @@
   </resultMap>
   <!-- 评价表表的增加 -->
   <insert id="add" parameterType="com.great.bean.Car">
-  insert into T_EVALUATE (EVALUATE_ID,EVALUATE_CONTENT) 
-  values (SEQ_T_NOTICE.NEXTVAL,#{EVALUATE_CONTENT})
+  insert into T_EVALUATE (EVALUATE_ID,EVALUATE_CONTENT,SCHOOL_ID) 
+  values (SEQ_T_NOTICE.NEXTVAL,#{evaluateContent},#{schoolId})
   </insert>
   <!-- 评价表查询 -->
   <select id="queryAll"  resultMap="BaseResultMap">

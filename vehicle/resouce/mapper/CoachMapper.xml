@@ -23,5 +23,8 @@
   	COACH_PHONE from t_coach c,t_school s,t_parameter p where c.COACH_STATE != 99 and 
   	c.COACH_STATE = p.PARAMETER_ID and c.SCHOOL_ID = s.SCHOOL_ID 
   </select>
-
+  	<!-- 根据驾校ID查询挂名在该驾校下的教练 -->
+	<select id="queryBySchoolId" parameterType="com.great.bean.Coach" resultType="java.util.Map">
+		select * from T_COACH where SCHOOL_ID=#{schoolId} and COACH_STATE!=99 and COACH_STATE!=2
+	</select>
 </mapper>

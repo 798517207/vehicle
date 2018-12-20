@@ -26,7 +26,7 @@ public class CarHandler {
 			List<Map<String,Object>> map = carService.queryAll();
 			mav.getModel().put("map", map);
 			
-			mav.setViewName("/back/car_list");
+			mav.setViewName("/front/car_list");
 			return mav;
 			
 		}

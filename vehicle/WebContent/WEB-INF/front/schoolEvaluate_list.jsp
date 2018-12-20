@@ -31,7 +31,7 @@
 <!--DataTables css-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/plugins/Datatable/css/dataTables.bootstrap4.css">
-<title>驾校查询</title>
+<title>驾校评价列表</title>
 <style>
 .app-content{
 margin-right: 90px;
@@ -55,7 +55,7 @@ margin-right: 90px;
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4>Defalut Datatables</h4>
+									<h4>驾校评价列表</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive"  style="padding: auto">
@@ -63,29 +63,23 @@ margin-right: 90px;
 											class="table table-striped table-bordered border-t0 text-nowrap w-100">
 											<thead>
 												<tr>
-													<th class="wd-15p">驾校名称</th>
-													<th class="wd-10p">驾校简介</th>
-													<th class="wd-10p">教练员</th>
-													<th class="wd-10p">教练车数量</th>
-													<th class="wd-10p">已有学员数量</th>
-													<th class="wd-10p">联系方式</th>
-													<th class="wd-10p">建立日期</th>
+													<th class="wd-15p">驾校名字</th>
+													<th class="wd-10p">评价内容</th>
+													<th class="wd-10p">评价状态</th>
+													<th class="wd-10p">发布时间</th>
+													
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach items="${requestScope.schoolList}" var="school" varStatus="loop">
-													<tr>
-														<td>${school.SCHOOL_NAME}</td>
-														<td>${school.SCHOOL_INTRODUCE}</td>
-														<td><select>
-														<option value="0">请选择</option>
-														</select></td>
-														<td>${school.CNUM}</td>
-														<td>${school.UNUM}</td>	
-														<td>${school.SCHOOL_PHONE}</td>
-														<td>${school.SCHOOL_DATE}</td>
-													</tr>
-												</c:forEach>
+												<c:forEach items="${map}" var="map">
+								                    <tr>
+								                    	<td>${map.SCHOOL_NAME}</td>
+								                        <td>${map.EVALUATE_CONTENT}</td>
+								                    	<td>${map.EVALUATE_STATE==1?"启用":"禁用"}</td>
+								                   		<td>${map.EVALUATE_DATE}</td>
+								                    </tr>
+							                    </c:forEach>
+							                 
 											</tbody>
 										</table>
 									</div>

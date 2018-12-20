@@ -25,7 +25,13 @@
 		values
 		(seq_t_school.nextval,#{schoolAccount},#{schoolPwd},#{schoolName},#{schoolLicense},#{schoolMaster},#{schoolPhone})
 	</insert>
+	<!-- 查询所有数据 -->
 	<select id="queryAll"  resultMap="BaseResultMap">
-   select * FROM T_SCHOOL WHERE SCHOOL_STATE!=99
-   </select>
+     select * FROM T_SCHOOL WHERE SCHOOL_STATE!=99
+   	</select>
+   <!-- 查询评价表学员对自己的评价 -->
+	<select id="querySchool"  resultType="map">
+     select a.*,b.SCHOOL_NAME FROM T_EVALUATE a,T_SCHOOL b 
+     where a.SCHOOL_ID=b.SCHOOL_ID and a.EVALUATE_STATE!=99
+   	</select>
 </mapper>

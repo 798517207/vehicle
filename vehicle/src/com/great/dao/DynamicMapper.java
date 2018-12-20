@@ -1,17 +1,15 @@
 package com.great.dao;
 
+
+import java.util.List;
+import java.util.Map;
+
 import com.great.bean.Dynamic;
 
 public interface DynamicMapper {
-    int deleteByPrimaryKey(Integer dynamicId);
-
-    int insert(Dynamic record);
-
-    int insertSelective(Dynamic record);
-
-    Dynamic selectByPrimaryKey(Integer dynamicId);
-
-    int updateByPrimaryKeySelective(Dynamic record);
-
-    int updateByPrimaryKey(Dynamic record);
+    
+  //增加行业动态表
+    public int add(Dynamic dynamic) throws Exception;
+  //查询教练车表，并展示数据
+    public List<Map<String,Object>> queryAll() throws Exception;
 }

@@ -85,7 +85,7 @@
 							<ul class="slide-menu">
 								<li><a class="slide-item"  href="#"><span>学员管理</span></a></li>
 								<li><a class="slide-item" href="#"><span>驾校管理</span></a></li>
-								<li><a class="slide-item" href="#"><span>教练车管理</span></a></li>
+								<li><a class="slide-item" href="${pageContext.request.contextPath}/back/car/queryCar.handler"><span>教练车管理</span></a></li>
 								<li><a class="slide-item" href="${pageContext.request.contextPath}/back/coach/coachList.handler"><span>教练管理</span></a></li>
 								<li><a class="slide-item" href="#"><span>题库管理</span></a></li>
 							</ul>
@@ -100,7 +100,7 @@
 						<li class="slide">
 							<a class="side-menu__item"  data-toggle="slide" href="#"><i class="side-menu__icon fa fa-desktop"></i><span class="side-menu__label">门户管理</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
-								<li><a class="slide-item"  href="#"><span>行业动态发布</span></a></li>
+								<li><a class="slide-item"  href=""${pageContext.request.contextPath}/go/back/dynamic_add.handler"><span>行业动态发布</span></a></li>
 								<li><a class="slide-item" href="#"><span>友情链接管理</span></a></li>
 							</ul>
 						</li>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>新增链接</title>
+<title>新增公告</title>
 </head>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.min.js"></script>
 <style>
@@ -50,22 +50,21 @@
 			<!-- <input name="method" value="adminAdd" style="display:none" readonly="true"> -->
 			<table cellspacing="0px">
 				<thead>
-					<th>新增友情链接</th>
+					<th>新增通知公告</th>
 				</thead>
 				<tbody>
 					<tr>
-						<td>链接名: <input type="text" name="linkName" id="linkName"></td>
+						<td>公告标题: <input type="text" name="noticeTitle" id="noticeTitle"></td>
 					</tr>
 					<tr>
-						<td>链接路径: <input type="text" name="linkAddress"
-							id="linkAddress"></td>
+						<td>公告内容: <input type="text" name="noticeContent" id="noticeContent"></td>
 					</tr>
 				</tbody>
 			</table>
 	</div>
 	</form>
 	<div class="button">
-		<input type="button" value="添加" class="b-r" onClick="ad()"> <input
+		<input type="button" value="添加" class="b-r" onClick="add()"> <input
 			type="button" value="返回" class="b-r" onClick="back()">
 	</div>
 </body>
@@ -73,15 +72,15 @@
 	function back() {
 		window.history.back();
 	}
-	function ad() {
+	function add() {
 		$.ajax({
-					url : "${pageContext.request.contextPath}/back/Link/linkAdd.handler",
+					url : "${pageContext.request.contextPath}/front/notice/addNotice.handler",
 					type : "post",
 					data : $('#form').serialize(),
 					success : function(data) {
 						if (data.status == 'y') {
 							window.alert(data.info);
-							window.location.href = '${pageContext.request.contextPath}/back/Link/linkQueryAll.handler';
+							window.location.href = '${pageContext.request.contextPath}/front/notice/queryAllNotice.handler';
 						} else {
 							window.alert(data.info);
 						}

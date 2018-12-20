@@ -1,5 +1,6 @@
 package com.great.handler.back;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import java.util.Map;
@@ -37,7 +38,16 @@ public class CarHandler {
 	
 	//增加教练车
 	@RequestMapping(value = "/addCar.handler")
-	public @ResponseBody Result add(@RequestBody Car car) throws Exception {
+	public @ResponseBody Result add(
+			@RequestParam(value="carNum",required=true) String carNum,
+			@RequestParam(value="schoolId",required=true) int schoolId,
+			@RequestParam(value="coachId",required=true) int coachId,
+			HttpSession session
+			) throws Exception {
+		Car car=new Car();
+		car.setCarNum(carNum);
+		car.setSchoolId(schoolId);
+		car.setCoachId(coachId);
 		boolean flag=false;
 		flag = carService.add(car);
 		if(flag==true){
@@ -51,10 +61,12 @@ public class CarHandler {
 		@RequestMapping(value = "/deleteCar.handler")
 		public @ResponseBody Result delete(
 				@RequestParam(value = "carId",required=true) int carId,
+				
 				HttpSession session
 				) throws Exception {
+			
 			boolean flag=false;
-			flag=carService.delete(carId);
+			flag=carService.delete(carId,99);
 			if(flag==true){
 				return Result.success("删除成功");
 			}else{
@@ -64,31 +76,24 @@ public class CarHandler {
 		}
 		//修改教练车
 		@RequestMapping(value = "/updateCar.handler")
-		public ModelAndView  update(ModelAndView mav,
+		public @ResponseBody Result  update(ModelAndView mav,
 				@RequestParam(value = "carId",required=true) int carId,
+				@RequestParam(value = "carNum",required=true) String carNum,
+				@RequestParam(value = "schoolId",required=true) int schoolId,
+				@RequestParam(value = "coachId",required=true) int coachId,
 				HttpSession session
 				) throws Exception {
 			boolean flag=false;
-			flag=carService.update(carId);
-			List<Map<String,Object>> map = carService.queryAll();
-			mav.getModel().put("map", map);
-			mav.setViewName("/back/car_add");
-			return mav;
+			flag=carService.update(carId,carNum,schoolId,coachId);
+			if(flag==true){
+				return Result.success("修改成功");
+			}else{
+			return Result.fail("修改失败");
+			}
+			
 			
 		}
-	//获取教练表和驾校表的数据。
-	@RequestMapping(value = "/queryall.handler")
-	public ModelAndView queryadd(ModelAndView mav,HttpSession session) throws Exception {
-		//获取驾校表的信息
-		List<Map<String,Object>> map1 = schoolService.queryAll();
-		mav.getModel().put("map1", map1);
-		//获取教练表
-		List<Map<String,Object>> map2 = coachService.queryAll();
-		mav.getModel().put("map2", map2);
-		mav.setViewName("/back/car_add");
-		return mav;
-		
-	}
+
 
 	@RequestMapping(value = "/queryCar.handler")
 	public ModelAndView queryCar(ModelAndView mav,HttpSession session) throws Exception {
@@ -100,5 +105,30 @@ public class CarHandler {
 		return mav;
 		
 	}
+	//查询单条的信息发回来
+	@RequestMapping(value = "/queryOneCar.handler")
+	public ModelAndView queryOnce(ModelAndView mav,
+			@RequestParam(value = "carId",required=true) int carId,
+			HttpSession session) throws Exception {
+		Map<String,Object> map = carService.queryOne(carId);
+		mav.getModel().put("map", map);
+		List<Map<String,Object>> schoolList =schoolService.queryAll();
+		mav.getModel().put("schoolList", schoolList);
+		mav.setViewName("/back/car_update");
+		return mav;
+		
+	} 
+	
+	//获取驾校列表，并进行界面跳转
+	@RequestMapping(value="/addModelCar.handler")
+	public ModelAndView addModelCar(ModelAndView mav,
+			HttpSession session) throws Exception{
+		List<Map<String,Object>> schoolList =schoolService.queryAll();
+		mav.getModel().put("schoolList", schoolList);
+		mav.setViewName("/back/car_add");
+		return mav;
+		
+	}
+	
 	
 }

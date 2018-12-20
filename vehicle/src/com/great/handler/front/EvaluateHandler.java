@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,18 +17,27 @@ import com.great.bean.Evaluate;
 import com.great.bean.Notice;
 import com.great.service.EvaluateService;
 import com.great.service.NoticeService;
+import com.great.service.SchoolService;
 import com.great.util.Result;
 
 @Controller
 @RequestMapping("/front/evaluate")
 public class EvaluateHandler {
+    //评价表的service
 	@Resource
 	private EvaluateService evaluateService;
+	//驾校的service
+	@Resource
+    private SchoolService schoolService;
 	@RequestMapping(value = "/addEvaluate.handler")
 	public @ResponseBody Result add(
-			@RequestBody Evaluate evaluate,
+			@RequestParam(value="schoolId",required=true) Integer schoolId,
+			@RequestParam(value="evaluateContent",required=true) String evaluateContent,
 			HttpSession session
 			) throws Exception {
+		Evaluate evaluate = new Evaluate();
+		evaluate.setSchoolId(schoolId);
+		evaluate.setEvaluateContent(evaluateContent);
 		boolean flag=false;
 		flag = evaluateService.add(evaluate);
 		if(flag==true){
@@ -46,4 +56,13 @@ public class EvaluateHandler {
 		mav.setViewName("/front/evaluate_list");
 		return mav;
 		}
+	   //获取驾校列表，并进行界面跳转
+		@RequestMapping(value="/addModelEvaluate.handler")
+		public ModelAndView addModelEvaluate(ModelAndView mav,
+				HttpSession session) throws Exception{
+			List<Map<String,Object>> schoolList =schoolService.queryAll();
+			mav.getModel().put("schoolList", schoolList);
+			mav.setViewName("/front/evaluate_add");
+			return mav;
 }
+		}

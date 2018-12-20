@@ -11,7 +11,7 @@
    <!-- 通知公告表的增加 -->
   <insert id="add" parameterType="com.great.bean.Notice">
   insert into T_NOTICE (NOTICE_ID,NOTICE_TITLE,NOTICE_CONTENT) 
-  values (SEQ_T_NOTICE.NEXTVAL,#{NOTICE_TITLE},#{NOTICE_CONTENT})
+  values (SEQ_T_NOTICE.NEXTVAL,#{noticeTitle},#{noticeContent})
   </insert>
   <!-- 通知公告表的修改 -->
   <update id="update" parameterType="com.great.bean.Notice">
@@ -22,8 +22,13 @@
   <update id="delete" parameterType="com.great.bean.Notice">
   update T_NOTICE SET NOTICE_STATE=99 WHERE NOTICE_ID=#{noticeId}
   </update>
+  <!-- 查询公告表全部 -->
   <select id="queryAll"  resultMap="BaseResultMap">
   select * FROM T_NOTICE WHERE NOTICE_STATE!=99
+  </select>
+   <!-- 查询公告表One -->
+  <select id="queryOne"  resultMap="BaseResultMap">
+  select * FROM T_NOTICE WHERE NOTICE_STATE!=99 and NOTICE_ID=#{noticeId}
   </select>
   
 </mapper>

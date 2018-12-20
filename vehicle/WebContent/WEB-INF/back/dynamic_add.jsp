@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>新增评价表</title>
+<title>新增动态行业</title>
 </head>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.1.1.min.js"></script>
 <style>
@@ -50,21 +50,14 @@
 			<!-- <input name="method" value="adminAdd" style="display:none" readonly="true"> -->
 			<table cellspacing="0px">
 				<thead>
-					<th>新增评价表</th>
+					<th>新增动态行业</th>
 				</thead>
 				<tbody>
 					<tr>
-						<td>选择驾校: 
-						<select name="schoolId" id="schoolId" >
-							<option value="0">请选择</option>
-							<c:forEach items= "${requestScope.schoolList}" var="School">
-								<option value="${School.schoolId}">${School.schoolName}</option>
-							</c:forEach>
-						</select>
-						</td>
+						<td>动态标题: <input type="text" name="dynamicTitle" id="dynamicTitle"></td>
 					</tr>
 					<tr>
-						<td>评价内容: <input type="text" name="evaluateContent" id="evaluateContent"></td>
+						<td>动态内容: <input type="text" name="dynamicContent" id="dynamicContent"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -81,13 +74,13 @@
 	}
 	function add() {
 		$.ajax({
-					url : "${pageContext.request.contextPath}/front/evaluate/addEvaluate.handler",
+					url : "${pageContext.request.contextPath}/back/dynamic/addDynamic.handler",
 					type : "post",
 					data : $('#form').serialize(),
 					success : function(data) {
 						if (data.status == 'y') {
 							window.alert(data.info);
-							window.location.href = '${pageContext.request.contextPath}/front/school/querySchool.handler';
+							window.location.href = '${pageContext.request.contextPath}/front/dynamic/queryDynamic.handler';
 						} else {
 							window.alert(data.info);
 						}

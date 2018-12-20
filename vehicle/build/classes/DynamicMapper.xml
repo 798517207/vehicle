@@ -8,5 +8,13 @@
     <result column="DYNAMIC_STATE" jdbcType="DECIMAL" property="dynamicState" />
     <result column="DYNAMIC_DATE" jdbcType="TIMESTAMP" property="dynamicDate" />
   </resultMap>
-  
+   <!-- 行业动态表的增加 -->
+  <insert id="add" parameterType="com.great.bean.Dynamic">
+  insert into T_DYNAMIC (DYNAMIC_ID,DYNAMIC_TITLE,DYNAMIC_CONTENT) 
+  values (SEQ_T_DYNAMIC.NEXTVAL,#{dynamicTitle},#{dynamicContent})
+  </insert>
+  <!-- 查询行业动态表 -->
+  <select id="queryAll"  resultMap="BaseResultMap">
+  select * FROM T_DYNAMIC WHERE DYNAMIC_STATE!=99
+  </select>
 </mapper>

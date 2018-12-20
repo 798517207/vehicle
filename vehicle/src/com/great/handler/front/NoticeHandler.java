@@ -1,5 +1,6 @@
 package com.great.handler.front;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,13 @@ public class NoticeHandler {
 	
 	@RequestMapping(value = "/addNotice.handler")
 	public @ResponseBody Result add(
-			@RequestBody Notice notice,
+			@RequestParam(value="noticeTitle",required=true) String noticeTitle,
+			@RequestParam(value="noticeContent",required=true) String noticeContent,
 			HttpSession session
 			) throws Exception {
+		Notice notice=new Notice();
+		notice.setNoticeTitle(noticeTitle);
+		notice.setNoticeContent(noticeContent);
 		boolean flag=false;
 		flag = noticeService.add(notice);
 		if(flag==true){
@@ -45,11 +50,12 @@ public class NoticeHandler {
 	   //删除教练车
 			@RequestMapping(value = "/deleteNotice.handler")
 			public @ResponseBody Result delete(
-					@RequestParam(value = "noticeId",required=true) int noticeId,
+					@RequestParam(value = "noticeId",required=true) BigDecimal noticeId,
+					@RequestParam(value = "noticeState",required=true) BigDecimal noticeState,
 					HttpSession session
 					) throws Exception {
 				boolean flag=false;
-				flag=noticeService.delete(noticeId);
+				flag=noticeService.delete(noticeId,noticeState);
 				if(flag==true){
 					return Result.success("删除成功");
 				}else{
@@ -61,11 +67,13 @@ public class NoticeHandler {
 			 //修改教练车
 			@RequestMapping(value = "/updateNotice.handler")
 			public @ResponseBody Result update(
-					@RequestParam(value = "noticeId",required=true) int noticeId,
+					@RequestParam(value = "noticeId",required=true) BigDecimal noticeId,
+					@RequestParam(value="noticeTitle",required=true) String noticeTitle,
+					@RequestParam(value="noticeContent",required=true) String noticeContent,
 					HttpSession session
 					) throws Exception {
 				boolean flag=false;
-				flag=noticeService.update(noticeId);
+				flag=noticeService.update(noticeId,noticeTitle,noticeContent);
 				if(flag==true){
 					return Result.success("删除成功");
 				}else{
@@ -83,4 +91,17 @@ public class NoticeHandler {
 		return mav;
 		
 	}
+     //查询单条的信息发回来
+	@RequestMapping(value = "/queryOneNotice.handler")
+	public ModelAndView queryOnce(ModelAndView mav,
+			@RequestParam(value = "noticeId",required=true) BigDecimal noticeId,
+			HttpSession session) throws Exception {
+		Map<String,Object> map = noticeService.queryOne(noticeId);
+		mav.getModel().put("map", map);
+	
+		mav.setViewName("/front/notice_update");
+		return mav;
+		
+	} 
+	
 }

@@ -58,16 +58,17 @@
 </header>
  <nav class="nav left">
     <ul class="left" id="navList"><li><a href="${pageContext.request.contextPath}/front/head.jsp" target="right">首页</a></li>
-        <li><a href="###">个人菜单</a><div class="navCon">
+        <li><a href="">个人菜单</a><div class="navCon">
             <ul class="navConUl">
-                <li><a href="###"><p><img src="${pageContext.request.contextPath}/img/perso_02.png"> </p>
+                <li><a href="${pageContext.request.contextPath}/front/evaluate/addModelEvaluate.handler"><p><img src="${pageContext.request.contextPath}/img/perso_02.png"> </p>
                     <p>户籍办理 </p></a>
                 </li>
             </ul>
         </div>
-        <li><a href="law.html">行业动态</a></li>
+        <li><a href="${pageContext.request.contextPath}/front/dynamic//queryDynamic.handler" target="right">行业动态</a></li>
         <li><a href="${pageContext.request.contextPath}/front/notice/queryAllNotice.handler" target="right">通知公告</a> </li>
         <li><a href="${pageContext.request.contextPath}/front/school_apply.jsp" target="right">驾校开通申请</a> </li>
+        <li><a href="${pageContext.request.contextPath}/front/evaluate/addModelEvaluate.handler" target="right">学员对驾校评价</a> </li>
     </ul>
 </nav>
 		<!--Jquery.min js-->

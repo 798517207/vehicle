@@ -12,4 +12,6 @@ public interface SchoolMapper {
 	
 	//查询驾校表，并展示数据
     public List<Map<String,Object>> queryAll() throws Exception;
+    //查询评价表，显示学生对自己的评价
+    public List<Map<String,Object>> querySchool() throws Exception;
 }
